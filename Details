@@ -1,0 +1,8 @@
+#automatic downloader #128kbps (default)
+#top songs 
+#autocheck downloaded files
+Note (Pre - requirements):
+Install pip
+install required libraries with pip
+Preferred python version 2.7.5
+Note: The songs are being downloaded from wapking website.
