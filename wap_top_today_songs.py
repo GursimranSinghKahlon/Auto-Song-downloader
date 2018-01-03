@@ -10,10 +10,10 @@ url='https://wapking.live/top/today.html'      ## give the url here
 parse_object=urlparse(url)
 dirname=basename(parse_object.path)
 
-if not os.path.exists('song'):
-    os.mkdir("song")
-    os.mkdir("song/"+"today.html")    
-os.chdir("song/today.html")
+if not os.path.exists('TopSongs'):
+    os.mkdir("TopSongs")
+    os.mkdir("TopSongs/"+"Today")    
+os.chdir("TopSongs/Today")
 
 urlcontent=urllib2.urlopen(url).read()
 #print(urlcontent)
