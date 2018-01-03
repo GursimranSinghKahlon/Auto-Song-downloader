@@ -16,19 +16,26 @@ if not os.path.exists('song'):
 os.chdir("song/today.html")
 
 urlcontent=urllib2.urlopen(url).read()
+#print(urlcontent)
 songurls0=re.findall('a .*?href="(/fileDownload/.*?)"',urlcontent)
+#print(songurls0)
+songnames=re.findall('a .*?href=".*?</div><div>(.*?)<br/>',urlcontent)
+#print(songnames)
 
 songurls=[]
-songnames=[]
 n=0
 for i in songurls0:
     xy=i.split('/')
     x=xy[-2]
-    y=xy[-1].replace('.html','').replace('+',' ')
     songurls.append("/files/download/type/128/id/"+x)
-    songnames.append(y+".mp3")
     n+=1
-   
+
+
+'''for i in songnames:
+    print(i)
+
+for i in songurls:
+    print(i)'''
 
 print("####################         Songs on disk:         #########################")
 songdd=[]
@@ -37,7 +44,7 @@ for root, dirs, files in os.walk('.'):
         m=os.path.join("", file)
         print(m)
         songdd.append(m)
-              
+             
 
 
 #print(songurls)
@@ -48,7 +55,7 @@ f=0
 for songurl in songurls:
     n+=1
     print(songnames[n])
-    if songnames[n] not in songdd:
+    if (songnames[n] not in songdd) and re.match(r'.*3',songnames[n],re.L):
         f+=1
         print("####################         New song found         #########################")
         print("####################          Downloading           #########################")
@@ -59,8 +66,8 @@ for songurl in songurls:
             
             songurl="https://wapking.live"+songurl
             #print("Final2 : ")
-            #print(songurl)        
-
+            #print(songurl)
+            
             songdata=urllib2.urlopen(songurl).read()
             print(songnames[n])
             filname=basename(songnames[n])
@@ -68,6 +75,8 @@ for songurl in songurls:
             output.write(songdata)
             output.close()
             os.remove(filename)
+
+
         except:
             pass
 print("")
