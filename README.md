@@ -16,3 +16,15 @@ OR
   Use following command in cmd to install required packages
   "py -2.7 -m pip install SomePackage"
   Replace SomePackage with required package.
+  
+# Auto-Song-dowloader with progress bar
+Note:Download file from progressbar branch
+Install following packages(using cmd):
+py -2.7 -m pip install tqdm
+py -2.7 -m pip install requests
+
+Running:
+1.Open cmd
+2.Browse to directory of downloaded python file(Using cd)
+3.Run:
+  py -2.7 wapkg_top_today_songs(2.7).py
