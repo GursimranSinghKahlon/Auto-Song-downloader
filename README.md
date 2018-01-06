@@ -1,5 +1,5 @@
 # Auto-Song-dowloader
-Download top-daily songs automatically by a single click
+Download top-daily songs automatically by a single click \n
 Pros: It do not download songs already present in folder of local disk
 
 Requirement: python 2.7
