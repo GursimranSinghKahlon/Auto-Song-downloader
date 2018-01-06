@@ -1,3 +1,5 @@
+from tqdm import tqdm
+import requests
 import urllib2
 import re
 import os
@@ -25,8 +27,7 @@ songnames=re.findall('a .*?href=".*?</div><div>(.*?)<br/>',urlcontent)
 songurls=[]
 n=0
 for i in songurls0:
-    xy=i.split('/')
-    x=xy[-2]
+    x=i.split('/')[-2]
     songurls.append("/files/download/type/128/id/"+x)
     n+=1
 
@@ -46,36 +47,33 @@ for root, dirs, files in os.walk('.'):
         songdd.append(m)
              
 
-
 #print(songurls)
 print("")
 print("####################         Songs on website:         #########################")
 n=-1
-f=0
+t=0
 for songurl in songurls:
     n+=1
     print(songnames[n])
     if (songnames[n] not in songdd) and re.match(r'.*3',songnames[n],re.L):
-        f+=1
+        t+=1
         print("####################         New song found         #########################")
         print("####################          Downloading           #########################")
         try:
      
-            #print("Final : ")
-            #print(songurl)
-            
             songurl="https://wapking.live"+songurl
             #print("Final2 : ")
             #print(songurl)
-            
-            songdata=urllib2.urlopen(songurl).read()
-            print(songnames[n])
-            filname=basename(songnames[n])
-            output=open(filname,'wb')
-            output.write(songdata)
-            output.close()
-            os.remove(filename)
 
+            chunk_size = 1024
+            r = requests.get(songurl, stream = True)
+            total_size = int(r.headers['content-length'])
+
+            with open(songnames[n], 'wb') as f:
+                    for data in tqdm(iterable = r.iter_content(chunk_size = chunk_size), total = total_size/chunk_size, unit = 'KB'):
+                            f.write(data)
+            print("Download complete!")
+            output.close()
 
         except:
             pass
