@@ -23,6 +23,10 @@ OR
 
 Note:Download file from progressbar branch
 
+https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/wap_top_daily_songs(2.7).py
+
+https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/
+
 Install following packages(using cmd):
 
   py -2.7 -m pip install tqdm
