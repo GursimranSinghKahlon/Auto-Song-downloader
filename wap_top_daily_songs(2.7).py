@@ -54,7 +54,8 @@ n=-1
 f=0
 for songurl in songurls:
     n+=1
-    print(songnames[n])
+    if(re.match(r'.*3',songnames[n],re.L)):
+        print(songnames[n])
     if (songnames[n] not in songdd) and re.match(r'.*3',songnames[n],re.L):
         f+=1
         print("####################         New song found         #########################")
