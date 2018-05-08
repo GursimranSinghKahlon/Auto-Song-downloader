@@ -39,24 +39,22 @@ for songurl in songurls:
 	songurl=re.findall('a .*?href="(.*?)"><img',urlcontent)
 	songurl=songurl[1]
 	songname=basename(songurl)
-	#songname=songurl.split('/')[-1]
 	print(songname)
 	
 	if songname not in songdd:
 		f+=1
 		print("##############               New song found               ###################")
 		print("********************          Downloading           *************************")
-		try:
-	 
+		try: 
 			#print("URL : ")
 			#print(songurl)        
-
 			songdata=urllib2.urlopen(songurl).read()
 			filname=songname
 			output=open(filname,'wb')
 			output.write(songdata)
 			output.close()
 			print("Downloaded")
+			
 		except:
 			print("Error")
 			pass
