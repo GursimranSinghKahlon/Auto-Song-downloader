@@ -60,7 +60,6 @@ for songurl in songurls:
 		except:
 			print("Error")
 			pass
-			
 	print("")
 print("######                "+ " New Songs Downloaded = "+  str(f) +"                ######")
 
