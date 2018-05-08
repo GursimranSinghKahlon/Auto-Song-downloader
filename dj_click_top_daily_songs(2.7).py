@@ -13,6 +13,7 @@ if not os.path.exists('songdj'):
     os.mkdir("songdj/"+"today")    
 os.chdir("songdj/today")
 
+# Fetch webpage
 urlcontent=urllib2.urlopen(url).read()
 #print(urlcontent)
 songurls=re.findall('<a class="touch"href="(.*?)">',urlcontent)
