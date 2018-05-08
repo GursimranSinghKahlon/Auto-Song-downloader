@@ -33,6 +33,7 @@ print("")
 print("####################         Songs on website:         #########################")
 f=0
 for songurl in songurls:
+	
 	urlcontent=urllib2.urlopen(songurl).read()
 	#print(urlcontent)
 	songurl=re.findall('a .*?href="(.*?)"><img',urlcontent)
@@ -40,6 +41,7 @@ for songurl in songurls:
 	songname=basename(songurl)
 	#songname=songurl.split('/')[-1]
 	print(songname)
+	
 	if songname not in songdd:
 		f+=1
 		print("##############               New song found               ###################")
@@ -50,7 +52,7 @@ for songurl in songurls:
 			#print(songurl)        
 
 			songdata=urllib2.urlopen(songurl).read()
-			filname=basename(songname)
+			filname=songname
 			output=open(filname,'wb')
 			output.write(songdata)
 			output.close()
