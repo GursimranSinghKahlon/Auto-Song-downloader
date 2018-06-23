@@ -37,4 +37,5 @@ Running:
   
   3.Run:
   
-    py -2.7 wap_top_daily_songs(2.7).py
+    py -2.7 top_daily_songs.py
+    python2 top_daily_songs.py (ubuntu) 
