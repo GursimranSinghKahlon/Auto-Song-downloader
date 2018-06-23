@@ -25,7 +25,7 @@ https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/SD.
 
 Note:Download file from progressbar branch
 
-https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/wap_top_daily_songs(2.7).py
+https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/top_daily_songs.py
 
 https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/
 
