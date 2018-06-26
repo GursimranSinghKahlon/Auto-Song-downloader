@@ -17,48 +17,56 @@ os.chdir("songdj/today")
 urlcontent=urllib2.urlopen(url).read()
 #print(urlcontent)
 songurls=re.findall('<a class="touch"href="(.*?)">',urlcontent)
-songurls=songurls[2:]
+songurls=songurls[2:-3]
 #print(songurls)
 
 print("####################         Songs on disk:         #########################")
 songdd=[]
+n=0
 for root, dirs, files in os.walk('.'):
     for file in files:
-        m=os.path.join("", file)
-        print(m)
-        songdd.append(m)
+	    if(file.endswith('.mp3')):
+		    m=os.path.join("", file)
+		    print(str(n+1) + ". " + str(m))
+		    n+=1
+		    songdd.append(m)
              
 
 print("")
 print("####################         Songs on website:         #########################")
 f=0
+n=0
 for songurl in songurls:
-	
+	n+=1
 	urlcontent=urllib2.urlopen(songurl).read()
 	#print(urlcontent)
 	songurl=re.findall('a .*?href="(.*?)"><img',urlcontent)
+	#print(songurl)
+	if(len(songurl)<=1):
+		print('Error')
+		continue
 	songurl=songurl[1]
 	songname=basename(songurl)
-	print(songname)
-	
-	if songname not in songdd:
+	#songname=songurl.split('/')[-1]
+	print(str(n) + '. ' + str(songname))
+	if (songname not in songdd) and re.match(r'.mp3$',songname,re.L):
 		f+=1
 		print("##############               New song found               ###################")
 		print("********************          Downloading           *************************")
-		try: 
+		try:
+	 
 			#print("URL : ")
 			#print(songurl)        
+
 			songdata=urllib2.urlopen(songurl).read()
 			filname=songname
 			output=open(filname,'wb')
 			output.write(songdata)
 			output.close()
 			print("Downloaded")
-			
 		except:
 			print("Error")
 			pass
+			
 	print("")
 print("######                "+ " New Songs Downloaded = "+  str(f) +"                ######")
-
-
