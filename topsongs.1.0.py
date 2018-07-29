@@ -61,7 +61,6 @@ for songurl in songurls:
 		    print(songurl)
 		    download(songurl,songnames[n])
 		    print("Download complete!")
-		    f.close()
         except:	
 			print("Error")
 			pass
