@@ -3,7 +3,17 @@ import re
 import os
 import string
 from os.path import basename
+from tqdm import tqdm
+import requests
 
+def download(url,name):
+	chunk_size = 1024
+	r = requests.get(url, stream = True)
+	total_size = int(r.headers['content-length'])
+	with open(name, 'wb') as f:
+		for data in tqdm(iterable = r.iter_content(chunk_size = chunk_size), total = total_size/chunk_size, unit = 'KB'):
+			f.write(data)
+			
 # Website
 url='https://mr-johal.com/topTracks.php?cat=Single%20Track#gsc.tab=0'
 
@@ -18,7 +28,7 @@ urlcontent=urllib2.urlopen(url).read()
 #print(urlcontent)
 songurls=re.findall('<a class="touch"href="(.*?)">',urlcontent)
 songurls=songurls[2:-3]
-#print(songurls)
+print(songurls)
 
 print("####################         Songs on disk:         #########################")
 songdd=[]
@@ -49,20 +59,15 @@ for songurl in songurls:
 	songname=basename(songurl)
 	#songname=songurl.split('/')[-1]
 	print(str(n) + '. ' + str(songname))
-	if (songname not in songdd) and re.match(r'\.mp3$',songname,re.L):
+	if (songname not in songdd):
 		f+=1
 		print("##############               New song found               ###################")
 		print("********************          Downloading           *************************")
 		try:
-	 
+			
 			#print("URL : ")
 			#print(songurl)        
-
-			songdata=urllib2.urlopen(songurl).read()
-			filname=songname
-			output=open(filname,'wb')
-			output.write(songdata)
-			output.close()
+			download(songurl, songname)
 			print("Downloaded")
 		except:
 			print("Error")
