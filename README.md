@@ -1,4 +1,7 @@
-# Auto-Song-dowloader
+# Auto-Song-dowloader with progress bar
+
+https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/SD.PNG
+
 
 *Latest updated "topsongs.1.0.py" and "johaltop20.py"*
 
@@ -6,7 +9,7 @@ Download top-daily songs automatically by a single click
 
 Pros: It do not download songs already present in folder of local disk
 
-Requirement: python 2.7
+ Recommendation: python 2.7 and run using cmd/terminal for proper working of libraries.
 
 If any library not found:
   Recommended(Reinstall python 2.7.x)
@@ -22,21 +25,12 @@ OR
   
   Replace SomePackage with required package.
   
-# Auto-Song-dowloader with progress bar
 
-https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/SD.PNG
-
-Note:Download file from progressbar branch
-
-https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/top_daily_songs.py
-
-https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/
 
 Install following packages(using cmd):
 
   py -2.7 -m pip install tqdm
-  
-  py -2.7 -m pip install requests
+
 
 Running:
 
@@ -46,4 +40,4 @@ Running:
   
   3.Run:
   
-    py -2.7 wap_top_daily_songs(2.7).py
+    py -2.7 topsongs.1.0.py
