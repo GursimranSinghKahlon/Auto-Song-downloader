@@ -15,13 +15,23 @@ def download(url,name):
 			f.write(data)
 			
 # Website
-url='https://mr-johal.com/topTracks.php?cat=Single%20Track#gsc.tab=0'
-
+url='https://www.djjohal.com/topTracks.php?cat=Single%20Track#gsc.tab=0'
 # Make path
 if not os.path.exists('songdj'):
     os.mkdir("songdj")
     os.mkdir("songdj/"+"today")    
 os.chdir("songdj/today")
+
+
+site=url
+hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+       'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+       'Accept-Encoding': 'none',
+       'Accept-Language': 'en-US,en;q=0.8',
+       'Connection': 'keep-alive'}
+
+url = urllib2.Request(site, headers=hdr)
 
 # Fetch webpage
 urlcontent=urllib2.urlopen(url).read()
@@ -48,30 +58,26 @@ f=0
 n=0
 for songurl in songurls:
 	n+=1
-	urlcontent=urllib2.urlopen(songurl).read()
-	#print(urlcontent)
+	urls = urllib2.Request(songurl, headers=hdr)
+	urlcontent=urllib2.urlopen(urls).read()
+
 	songurl=re.findall('a .*?href="(.*?)"><img',urlcontent)
-	#print(songurl)
+	print(songurl)
 	if(len(songurl)<=1):
 		print('Error')
 		continue
 	songurl=songurl[1]
 	songname=basename(songurl)
-	#songname=songurl.split('/')[-1]
+
 	print(str(n) + '. ' + str(songname))
+	
 	if (songname not in songdd):
 		f+=1
 		print("##############               New song found               ###################")
 		print("********************          Downloading           *************************")
-		try:
-			
-			#print("URL : ")
-			#print(songurl)        
-			download(songurl, songname)
-			print("Downloaded")
-		except:
-			print("Error")
-			pass
+		download(songurl, songname)
+		print("Downloaded")
+
 			
 	print("")
 print("######                "+ " New Songs Downloaded = "+  str(f) +"                ######")
