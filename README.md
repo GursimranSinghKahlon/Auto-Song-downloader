@@ -1,6 +1,6 @@
 # Auto-Song-dowloader with progress bar
 
-https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/SD.PNG
+![alt txt](https://github.com/GursimranSinghKahlon/Auto-Song-dowloader/blob/Progressbar/SD.PNG)
 
 
 *Latest updated "topsongs.1.0.py" and "johaltop20.py"*
